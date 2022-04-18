@@ -3,6 +3,7 @@
 let score = 0;
 let currentScore = 0;
 let roll = 6;
+let activePlayer = 0;
 document.querySelector("img").classList.add("hidden");
 const scoreReset = document.querySelectorAll(".score, .current-score");
 
@@ -26,8 +27,15 @@ function rollDice(){
     // Same as currentScore = currentScore + roll
     currentScore += roll;
 
-   document.querySelector("#current--0").textContent = currentScore;
+   document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+  }else {
+    // If Player 1 Rolls a 1, then Player's 1 Score gets Reset to 0
+    document.querySelector(`#current--${activePlayer}`).textContent = 0;
+    // Resets the Current Score back to 0, Otherwise Player's 1 Score Would Automaticly Transfer to Player 2
+    currentScore = 0;
+    // Switches the Active Player's Value from 0 to 1, which causes the Switch from Player 1 to Player 2
+    activePlayer = activePlayer === 0 ? 1 : 0;
+  }
+}
 
-}
-}
 
