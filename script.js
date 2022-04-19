@@ -10,6 +10,7 @@ let savedScores = [0, 0];
 document.querySelector("img").classList.add("hidden");
 let scoreReset = document.querySelectorAll(".current-score, .score");
 const hold = document.querySelector(".btn--hold");
+const rollDice = document.querySelector(".btn--roll");
 const youWonBackground = document.querySelector("body");
 
 function switchPlayer (){
@@ -30,14 +31,13 @@ for (let i = 0; i < scoreReset.length; i++){
     scoreReset[i].textContent = score;
 }
 
-document.querySelector(".btn--roll").addEventListener("click", rollDice);
-document.querySelector(".btn--hold").addEventListener("click", hold);
+
 
 // document.querySelector(".btn--hold").addEventListener("click", holdNumber);
 
 // document.querySelector(".btn--new").addEventListener("click", newgame);
 
-function rollDice(){
+rollDice.addEventListener("click", function(){
   document.querySelector("img").classList.remove("hidden");
   roll = Math.floor(Math.random() * 6) + 1;
   const diceRolled = `./images/dice-${roll}.png`;
@@ -53,7 +53,7 @@ function rollDice(){
   }else {
     switchPlayer()
   }
-}
+})
 
 hold.addEventListener("click", function(){
   // savedScores[0] = savedScores[0] + currentScore;
@@ -65,6 +65,11 @@ hold.addEventListener("click", function(){
 if (savedScores[activePlayer] >= 100){
   youWonBackground.classList.remove("play_background")
   youWonBackground.classList.add("won_background");
+  document.querySelector("#score--0").textContent = savedScores[0];
+  document.querySelector("#score--1").textContent = savedScores[1];
+  document.querySelectorAll(".current-score").textContent = 0;
+  hold.disabled = true;
+  rollDice.disabled = true;
 }
 
 else{
