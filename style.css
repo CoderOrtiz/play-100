@@ -16,10 +16,16 @@ body {
   font-weight: 400;
   height: 100vh;
   color: #333;
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.play_background {
+  background-image: linear-gradient(to top left, #FF5F00 0%, #EEEEEE 100%);
+}
+.won_background {
+  background-image: linear-gradient(to top left, #4E944F 0%, #E9EFC0 100%);
 }
 
 /* LAYOUT */
