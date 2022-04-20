@@ -7,14 +7,15 @@ let roll = 0
 let player1sTurn = document.querySelector(".player--0");
 let player2sTurn = document.querySelector(".player--1");
 let savedScores = [0, 0];
-document.querySelector("img").classList.add("hidden");
-let scoreReset = document.querySelectorAll(".current-score, .score");
+const hideDice = () => document.querySelector("img").classList.add("hidden");
+
 const hold = document.querySelector(".btn--hold");
 const rollDice = document.querySelector(".btn--roll");
+const reset = document.querySelector(".btn--new");
 const youWonBackground = document.querySelector("body");
 
 function switchPlayer (){
-// If Player 1 Rolls a 1, then Player's 1 Score gets Reset to 0
+// If a Player Rolls a 1, then the Player's Score gets Reset to 0
 document.querySelector(`#current--${activePlayer}`).textContent = 0;
 // Resets the Current Score back to 0, Otherwise Player's 1 Score Would Automaticly Transfer to Player 2
 currentScore = 0;
@@ -25,17 +26,14 @@ player1sTurn.classList.toggle("player--active");
 player2sTurn.classList.toggle("player--active");
 }
                                                       
-
+function scoreReset(){
+let scoreReset = document.querySelectorAll(".current-score, .score");
 
 for (let i = 0; i < scoreReset.length; i++){
     scoreReset[i].textContent = score;
+    savedScores = [0, 0]
 }
-
-
-
-// document.querySelector(".btn--hold").addEventListener("click", holdNumber);
-
-// document.querySelector(".btn--new").addEventListener("click", newgame);
+}
 
 rollDice.addEventListener("click", function(){
   document.querySelector("img").classList.remove("hidden");
@@ -76,3 +74,28 @@ else{
   switchPlayer();
 }
 })
+
+
+reset.addEventListener("click", function(){
+  score = 0;
+ currentScore = 0;
+ activePlayer = 0;
+ roll = 0
+ player1sTurn = document.querySelector(".player--0");
+ 
+ savedScores = [0, 0];
+const hideDice = () => document.querySelector("img").classList.add("hidden");
+
+  document.querySelector("#current--0").textContent = currentScore;
+  player1sTurn.classList.add("player--active");
+  player2sTurn.classList.remove("player--active");
+  youWonBackground.classList.remove("won_background");
+  youWonBackground.classList.add("play_background");
+  
+  hideDice()
+  scoreReset()
+  hold.disabled = false;
+  rollDice.disabled = false;
+
+  
+});
