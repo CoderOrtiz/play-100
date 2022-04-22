@@ -40,6 +40,13 @@ function switchPlayer() {
   player2sTurn.classList.toggle("player--active");
 }
 
+// Requesting and Displaying Player's Names
+const player1sName = prompt("What is Player 1's name?");
+const player2sName = prompt("What is Player 2's name?");
+
+document.querySelector("#name--0").textContent = player1sName || "Player 1";
+document.querySelector("#name--1").textContent = player2sName || "Player 2";
+
 // To Hide the Dice Before Game Begins
 hideDice();
 
