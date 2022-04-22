@@ -8,28 +8,46 @@
     <title>Pig Game</title>
   </head>
   <body class="play_background">
+    <div class="modal hidden">
+      <button class="close-modal">&times;</button>
+      <h1>Welcome to Play 💯!</h1>
+      <p>
+        Player 1 begins by pressing the “ROLL DICE” Button, at which time a
+        number between 1 through 6 will be rolled. If Player 1 rolls a 1, their
+        turn will be automatically skipped to Player 2 and their current score
+        will be set to 0. The same rules apply to Player 2. The goal of either
+        player is to accumulate as many “current” points from their dice rolls,
+        before they roll a 1. Either Player can “HOLD” their current score,
+        which will be saved as their overall score and be safe from being wiped
+        out. The first Player to reach an overall score of 100 or more wins the game! May
+        the odds ever be in your favor 😈
+      </p>
+    </div>
+    <div class="overlay hidden"></div>
+
     <main>
-      <section class="player player--0 player--active">
-        <h2 class="name" id="name--0">Player 1</h2>
-        <p class="score" id="score--0">0</p>
+      <section class="player player-0 player-active">
+        <h2 class="name" id="name-0">Player 1</h2>
+        <p class="score" id="score-0">0</p>
         <div class="current">
           <p class="current-label">Current</p>
-          <p class="current-score" id="current--0">0</p>
+          <p class="current-score" id="current-0">0</p>
         </div>
       </section>
-      <section class="player player--1">
-        <h2 class="name" id="name--1">Player 2</h2>
-        <p class="score" id="score--1">0</p>
+      <section class="player player-1">
+        <h2 class="name" id="name-1">Player 2</h2>
+        <p class="score" id="score-1">0</p>
         <div class="current">
           <p class="current-label">Current</p>
-          <p class="current-score" id="current--1">0</p>
+          <p class="current-score" id="current-1">0</p>
         </div>
       </section>
 
       <img src="images/dice-6.png" alt="Playing dice" class="dice" />
-      <button class="btn btn--new">🔄 New game</button>
-      <button class="btn btn--roll">🎲 Roll dice</button>
-      <button class="btn btn--hold">📥 Hold</button>
+      <button class="btn btn-new">🔄 New game</button>
+      <button class="btn btn-roll">🎲 Roll dice</button>
+      <button class="btn btn-hold">📥 Hold</button>
+      <button class="btn btn-instructions">📝 Instructions</button>
     </main>
     <script src="script.js"></script>
   </body>

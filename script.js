@@ -5,19 +5,23 @@ let activePlayer = 0;
 let savedScores = [0, 0];
 
 // To Select Elements within the HTML File
-let player1sTurn = document.querySelector(".player--0");
-let player2sTurn = document.querySelector(".player--1");
-const hold = document.querySelector(".btn--hold");
-const rollDice = document.querySelector(".btn--roll");
-const reset = document.querySelector(".btn--new");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const closeModalBtn = document.querySelector(".close-modal");
+const instructionsBtn = document.querySelector(".btn-instructions")
+let player1sTurn = document.querySelector(".player-0");
+let player2sTurn = document.querySelector(".player-1");
+const hold = document.querySelector(".btn-hold");
+const rollDice = document.querySelector(".btn-roll");
+const reset = document.querySelector(".btn-new");
 const youWonBackground = document.querySelector("body");
 
 // Arrow Functions Nested Within the Main Functions
 const hideDice = () => document.querySelector("img").classList.add("hidden");
 const addDiceImage = () => document.querySelector("img").classList.remove("hidden");
-const activePlayersCurrentScore = () => document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
-const activePlayersSavedScore = () => document.querySelector(`#score--${activePlayer}`).textContent = savedScores[activePlayer];
-const activePlayerCurrentScoreTo_0 = () => document.querySelector(`#current--${activePlayer}`).textContent = 0;
+const activePlayersCurrentScore = () => document.querySelector(`#current-${activePlayer}`).textContent = currentScore;
+const activePlayersSavedScore = () => document.querySelector(`#score-${activePlayer}`).textContent = savedScores[activePlayer];
+const activePlayerCurrentScoreTo_0 = () => document.querySelector(`#current-${activePlayer}`).textContent = 0;
 const allPlayersCurrentScoresTo_0 = () => document.querySelectorAll(".current-score").textContent = 0;
 
 // A Function Declarations Nested Within the Main Functions
@@ -35,24 +39,46 @@ function switchPlayer() {
   currentScore = 0;
   // Switches the Active Player's Value from 0 to 1, which causes the Switch from Player 1 to Player 2
   activePlayer = activePlayer === 0 ? 1 : 0;
-  // Toggles the "player--active" Class Between Player 1 & 2
-  player1sTurn.classList.toggle("player--active");
-  player2sTurn.classList.toggle("player--active");
+  // Toggles the "player-active" Class Between Player 1 & 2
+  player1sTurn.classList.toggle("player-active");
+  player2sTurn.classList.toggle("player-active");
 }
+
+// Functions to Open & Close the Modal Window
+function openModal(){
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+openModal();
+
+function closeModal(){
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+}
+
+function escapeKey (event){
+  if (event.key === "Escape");
+  closeModal();
+}
+
+closeModalBtn.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
+document.addEventListener("keydown", escapeKey);
+instructionsBtn.addEventListener("click", openModal);
 
 // Requesting and Displaying Player's Names
 const player1sName = prompt("What is Player 1's name?");
 const player2sName = prompt("What is Player 2's name?");
 
-document.querySelector("#name--0").textContent = player1sName || "Player 1";
-document.querySelector("#name--1").textContent = player2sName || "Player 2";
+document.querySelector("#name-0").textContent = player1sName || "Player 1";
+document.querySelector("#name-1").textContent = player2sName || "Player 2";
 
 // To Hide the Dice Before Game Begins
 hideDice();
 
 
 
-// ---- Main JavaScript Code for Game ----
+// ----- Main JavaScript Code for Game -----
 
 
 
@@ -104,8 +130,8 @@ reset.addEventListener("click", function () {
   savedScores = [0, 0];
 
   //  Game will Default to Player 1 when Game is Reset
-  player1sTurn.classList.add("player--active");
-  player2sTurn.classList.remove("player--active");
+  player1sTurn.classList.add("player-active");
+  player2sTurn.classList.remove("player-active");
 
   // Removes Green Background to the Orange Background
   youWonBackground.classList.remove("won_background");
@@ -118,3 +144,5 @@ reset.addEventListener("click", function () {
   hold.disabled = false;
   rollDice.disabled = false;
 });
+
+
